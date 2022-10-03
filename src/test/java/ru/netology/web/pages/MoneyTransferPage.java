@@ -12,17 +12,14 @@ public class MoneyTransferPage {
     private SelenideElement transferButton = $("[data-test-id='action-transfer'] span");
     private SelenideElement errorMessage = $(".notification__content");
 
-    public MoneyTransferPage() {
-        amountFiled.shouldBe(visible);
-    }
-    public MoneyTransferPage moneyTransfer(int amount, String cardNumber) {
+    public DashboardPage moneyTransfer(int amount, String cardNumber) {
         amountFiled.setValue(String.valueOf(amount));
         fromFiled.setValue(cardNumber);
         transferButton.click();
-        return new MoneyTransferPage();
+        return new DashboardPage();
     }
 
-    public void errorMessage() {
-        errorMessage.shouldHave(text("Ошибка")).shouldBe(visible);
+    public boolean errorMessage() {
+        return (errorMessage.isDisplayed());
     }
 }
